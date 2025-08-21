@@ -9,11 +9,17 @@ alias lidarslam='ros2 launch lidarslam lidarslam.launch.py'
 alias savemap='save_map_gui'
 # alias savemap_cli='save_map'
 
+# params変更
+alias slam_params='code ~/ros2_ws/src/lidarslam_ros2/lidarslam/param/lidarslam.yaml'
+
 
 
 #========================Localization=========================
 # .pcdマップを用いてMatching実行
 alias localization='scanmatch'
+
+# params変更
+alias lclz_params='code ~/ros2_ws/src/lidar_localization/param/localization.yaml'
 
 
 
@@ -144,3 +150,4 @@ scanmatch(){
   # Execute the ros2 launch command, passing the selected file path as an argument
   ros2 launch pcl_localization_ros2 pcl_localization.launch.py map_path_arg:="${PCD_FILE}"
 }
+
