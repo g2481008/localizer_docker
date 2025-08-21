@@ -38,7 +38,7 @@ RUN apt-get update && \
     colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release && \
     echo "source /root/ros2_ws/install/setup.bash" >> ~/.bashrc && \
     echo "export FASTDDS_BUILTIN_TRANSPORTS=UDPv4" >> ~/.bashrc && \
-    echo "esport ROS_DOMAIN_ID=11" >> ~/.bashrc && \
+    echo "export ROS_DOMAIN_ID=11" >> ~/.bashrc && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
