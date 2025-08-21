@@ -1,23 +1,18 @@
-# コマンド集
-# NDT-SLAMとNDT-Matchingが使えます
-# debugInfo:各パッケージのyamlはデフォルト値を定め、ユーザーが編集後も元の値に戻す
-
 # terminalのリロード
 alias reload='exec $SHELL -l'
 
 #=========================SLAM===============================
 # SLAM実行
 alias lidarslam='ros2 launch lidarslam lidarslam.launch.py'
-# .pcdマップの保存（lidarslamを実行中に使う）
-# 実行するとファイル名を聞いて、その名前でmapフォルダ(フォルダがないなら自動生成)に保存。デフォルトは年月日時刻にする
+
+# .pcdマップの保存（lidarslamを実行中に使う）デフォルト名は年月日時刻
 alias savemap='save_map_gui'
-alias savemap_cli='save_map'
+# alias savemap_cli='save_map'
 
 
 
 #========================Localization=========================
-# .pcdマップを用いてMatching実行(現状は非推奨)
-# debugInfo: RVIZと連携して、Autoware AIのようなGUI操作を可能にする。またpclは名前を指定して、読み込むようにする。
+# .pcdマップを用いてMatching実行
 alias localization='scanmatch'
 
 
