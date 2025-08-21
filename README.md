@@ -23,6 +23,8 @@ xhost +local:
 |`lidarslam`|NDT-SLAMを実行||
 |`savemap`|MAP(.pcd)を保存|SLAM実行中に別terminalで実行する|
 |`localization`|MAPを用いてNDT-Matchingを実行||
+|`slam_params`|SLAM parameterを確認/編集|保存後の次回起動時に反映される|
+|`lclz_params`|Matching parameterを確認/編集|保存後の次回起動時に反映される|
 |`reload`|terminalの再読込||
 
 # Paramter変更時の参照箇所
