@@ -1,0 +1,2 @@
+# Ensure .bash_aliases always uses LF line endings
+src/aliases.txt text eol=lf
