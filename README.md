@@ -1,7 +1,7 @@
 # localizer_docker
 NDT Localizer using Velodyne VLP-16 for wheelchair group
 
-# 使い方
+## Installation
 ### Dockerfileがある階層で実行:
 ```
 docker build -t velodyne_localizer:latest .
