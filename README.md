@@ -1,6 +1,19 @@
 # localizer_docker
 NDT Localizer using Velodyne VLP-16 for wheelchair group
 
+## 2026/02/20現在で確認している不具合
+### 最新GPU搭載(NVIDIA GeForce RTX 50xx 等)のPCで自己位置推定が不安定
+
+原因: コンテナのOS(Ubuntu22.04)が最新GPUを識別不能なため
+
+対策: 本Dockerコンテナを`run`したあと，**コンテナ内の**`.bashrc`に以下を追記:
+```
+export MESA_LOADER_DRIVER_OVERRIDE=zink
+```
+**動作確認済みGPU**
+
+RTX 5070 Ti Laptop
+
 ## Installation
 ### Dockerfileがある階層で実行:
 ```
@@ -12,7 +25,7 @@ docker build -t velodyne_localizer:latest .
 docker run -itd --ipc=host --gpus=all --env="NVIDIA_DRIVER_CAPABILITIES=all" --net host --privileged -e DISPLAY=unix${DISPLAY} -e NVIDIA_VISIBLE_DEVICES=0 -v /tmp/.X11-unix:/tmp/.X11-unix --name velodyneLocalizer velodyne_localizer:latest
 ```
 
-## Host側PC　.bashrc に以下を追記:
+## Host側の.bashrc に以下を追記:
 ```
 xhost +local:
 ```
@@ -21,13 +34,16 @@ xhost +local:
 |コマンド|実行内容|備考|
 |:------|:-----|:---|
 |`lidarslam`|NDT-SLAMを実行||
-|`savemap`|MAP(.pcd)を保存|SLAM実行中に別terminalで実行する|
+|`savemap`|MAP(.pcd)を保存|`lidarslam`実行中に別terminalで実行する|
 |`localization`|MAPを用いてNDT-Matchingを実行||
-|`slam_params`|SLAM parameterを確認/編集|保存後の次回起動時に反映される|
-|`lclz_params`|Matching parameterを確認/編集|保存後の次回起動時に反映される|
+|`slam_params`|SLAM parameterを確認/編集*|保存後の次回起動時に反映される|
+|`lclz_params`|Matching parameterを確認/編集*|保存後の次回起動時に反映される|
 |`reload`|terminalの再読込||
 
+*: vscodeにAttachして実行
+
 # Paramter変更時の参照箇所
+`slam_params`/`lclz_params`が使えない場合に参照
 ### SLAM
 `~/ros2_ws/src/lidarslam_ros2/lidarslam/param/lidarslam.yaml`
 
@@ -41,4 +57,3 @@ https://github.com/g2481008/lidar_localization_ros2#params
 
 # 使用時の注意
 * 初めてコンテナをAttachする場合、ネット環境に接続する
-
